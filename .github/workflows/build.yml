@@ -1,0 +1,97 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ "**" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Download Stockfish (Linux, for tests)
+        run: ./scripts/fetch-stockfish-linux.sh "$RUNNER_TEMP/sf"
+
+      - name: Core tests (chess rules, recognition, real Stockfish integration)
+        run: set -o pipefail; ./gradlew --no-daemon :core:selfTest -PstockfishPath="$STOCKFISH" 2>&1 | tee -a "$RUNNER_TEMP/build.log"
+
+      - name: Generate verified puzzles (only if missing)
+        run: |
+          if [ ! -s app/src/main/assets/puzzles.json ]; then
+            set -o pipefail
+            ./gradlew --no-daemon :core:generatePuzzles -PstockfishPath="$STOCKFISH" -PpuzzleCount=160 -PpuzzleMinutes=18 2>&1 | tail -n 60 | tee -a "$RUNNER_TEMP/build.log"
+            echo "NEW_PUZZLES=1" >> "$GITHUB_ENV"
+          fi
+          grep -c '"id"' app/src/main/assets/puzzles.json
+
+      - name: Commit generated puzzles
+        if: env.NEW_PUZZLES == '1' && github.event_name == 'push'
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add app/src/main/assets/puzzles.json
+          git commit -m "Add Stockfish-verified puzzles [skip ci]" || exit 0
+          git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" || echo "puzzle commit skipped"
+
+      - name: Build release APK
+        run: set -o pipefail; ./gradlew --no-daemon assembleRelease 2>&1 | tee -a "$RUNNER_TEMP/build.log"
+
+      - name: Collect APKs
+        run: |
+          mkdir -p dist
+          cp app/build/outputs/apk/release/app-arm64-v8a-release.apk dist/ChessVisionAI-${{ github.run_number }}-arm64.apk
+          cp app/build/outputs/apk/release/app-armeabi-v7a-release.apk dist/ChessVisionAI-${{ github.run_number }}-armv7.apk
+          ls -la dist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ChessVisionAI-apk
+          path: dist/*.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: puzzles
+          path: app/src/main/assets/puzzles.json
+
+      - name: Publish release
+        if: github.event_name == 'push'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: ChessVision AI build ${{ github.run_number }}
+          body: |
+            Automated build from ${{ github.sha }}
+            arm64 — для большинства современных телефонов (в т.ч. Huawei P60 Pro); armv7 — для старых 32-битных.
+          prerelease: true
+          files: dist/*.apk
+
+      - name: Publish build log (branch ci-logs)
+        if: always()
+        run: |
+          [ -f "$RUNNER_TEMP/build.log" ] || exit 0
+          mkdir -p "$RUNNER_TEMP/logs" && cd "$RUNNER_TEMP/logs"
+          git init -q -b ci-logs
+          grep -E "^e: |error:|FAIL|FAILED|What went wrong|Exception|passed=|vision |engine|puzzle|total|BUILD" "$RUNNER_TEMP/build.log" | head -n 400 > summary.txt || true
+          tail -n 300 "$RUNNER_TEMP/build.log" > tail.txt
+          echo "${{ github.run_number }} ${{ github.sha }} ${{ job.status }}" > run.txt
+          git add . && git -c user.name=ci -c user.email=ci@local commit -qm "log ${{ github.run_number }}"
+          git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" ci-logs

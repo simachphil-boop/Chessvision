@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <!-- stylised knight inside an eye-shaped lens -->
+    <path android:fillColor="#00000000" android:strokeColor="#FF3DDC84" android:strokeWidth="3"
+        android:pathData="M22,54 C34,34 74,34 86,54 C74,74 34,74 22,54 Z" />
+    <path android:fillColor="#FFE8EAED"
+        android:pathData="M48,70 L66,70 C66,62 64,56 62,52 C66,50 68,46 66,42 C62,38 56,36 50,38 L46,36 L46,41 L42,46 C40,49 42,51 44,51 L48,49 C50,51 52,51 54,50 C50,56 47,62 48,70 Z" />
+    <path android:fillColor="#FF3DDC84" android:pathData="M51,43 m-1.6,0 a1.6,1.6 0 1,0 3.2,0 a1.6,1.6 0 1,0 -3.2,0" />
+</vector>
