@@ -199,7 +199,7 @@ class UciEngine(private val command: List<String>, private val workDir: File? = 
 
     private suspend fun next(): String = try {
         lines.receive()
-    } catch (e: Exception) {
+    } catch (e: kotlinx.coroutines.channels.ClosedReceiveChannelException) {
         alive = false
         throw EngineException("Движок неожиданно завершился", e)
     }

@@ -249,10 +249,9 @@ fun ReviewScreen(g: AppGraph, id: Long, onBack: () -> Unit, onAnalyze: () -> Uni
             val best = info?.bestUci?.let { Move.fromUci(it) }
             val arrows = if (best != null && played != null && best != played && info?.cls !in setOf(MoveClass.BEST, MoveClass.BOOK, MoveClass.FORCED))
                 listOf(BoardArrow(best.from, best.to, CV.Accent)) else emptyList()
-            Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min)) {
-                val ev = ui.evals.getOrNull(ui.ply)
-                if (ev != null) EvalBar(ev.first, ev.second, ui.flipped, Modifier.padding(end = 6.dp))
-                ChessBoard(game.positions[ui.ply], pieceSet, theme, Modifier.weight(1f), flipped = ui.flipped, lastMove = played,
+            val ev = ui.evals.getOrNull(ui.ply)
+            BoardWithEval(ev != null, ev?.first ?: 50.0, ev?.second ?: "", ui.flipped) { m ->
+                ChessBoard(game.positions[ui.ply], pieceSet, theme, m, flipped = ui.flipped, lastMove = played,
                     arrows = arrows, showCoordinates = s.showCoordinates, movable = null,
                     squareMarks = if (played != null && info?.cls != null) mapOf(played.to to Color(info.cls.color).copy(alpha = 0.35f)) else emptyMap())
             }

@@ -178,13 +178,10 @@ fun AnalysisScreen(g: AppGraph, onBack: () -> Unit, onReview: (Long) -> Unit) {
         }
     }) {
         Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 10.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min)) {
-                if (settings.showEvalBar && ui.engineOn) {
-                    val sc = if (showAnalysisForBase) an.best?.score else null
-                    EvalBar(sc?.whiteWinPercent() ?: 50.0, sc?.display() ?: "", ui.flipped, Modifier.padding(end = 6.dp))
-                }
+            val sc = if (showAnalysisForBase) an.best?.score else null
+            BoardWithEval(settings.showEvalBar && ui.engineOn, sc?.whiteWinPercent() ?: 50.0, sc?.display() ?: "", ui.flipped) { m ->
                 ChessBoard(
-                    ui.shownPosition, pieceSet, theme, Modifier.weight(1f), flipped = ui.flipped,
+                    ui.shownPosition, pieceSet, theme, m, flipped = ui.flipped,
                     lastMove = ui.shownLastMove, arrows = arrows, squareMarks = marks, showCoordinates = settings.showCoordinates,
                     movable = ui.shownPosition.whiteToMove, onMove = { vm.move(it) },
                 )

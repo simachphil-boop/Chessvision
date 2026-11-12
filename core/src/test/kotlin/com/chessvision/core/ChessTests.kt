@@ -82,6 +82,11 @@ object ChessTests {
         val chk = Fen.parse("4k3/8/8/8/8/8/4R3/4K3 w - - 0 1").board()
         T.check("validator opp in check", !PositionValidator.isValid(chk, true))
 
+        // Puzzle JSON roundtrip
+        val pz = listOf(com.chessvision.core.engine.Puzzle("a1", "6k1/5ppp/8/8/8/8/5PPP/4R1K1 w - - 0 1", listOf("e1e8"), 900, "mateIn1", "a7a6"))
+        val back = com.chessvision.core.engine.PuzzleJson.parse(com.chessvision.core.engine.PuzzleJson.write(pz))
+        T.eq("puzzle json", pz, back)
+
         // PV to SAN
         T.eq("pv san", "1. e4 e5 2. Nf3", San.pvToSan(Position.start(), listOf("e2e4", "e7e5", "g1f3")))
     }

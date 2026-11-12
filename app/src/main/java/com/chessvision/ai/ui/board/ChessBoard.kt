@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.IntOffset
@@ -116,15 +117,15 @@ fun ChessBoard(
         return true
     }
 
-    BoxWithConstraints(modifier.aspectRatio(1f).clip(RoundedCornerShape(6.dp))) {
-        val sizePx = with(LocalDensity.current) { maxWidth.toPx() }
-        val cell = sizePx / 8f
+    var sizePx by remember { mutableFloatStateOf(0f) }
+    Box(modifier.aspectRatio(1f).clip(RoundedCornerShape(6.dp)).onSizeChanged { sizePx = it.width.toFloat() }) {
+        val cell = (if (sizePx > 0f) sizePx else 8f) / 8f
         val cellPx = cell.roundToInt().coerceAtLeast(8)
 
         Canvas(
             Modifier
                 .fillMaxSize()
-                .pointerInput(position, flipped, movable, onSquareTap != null) {
+                .pointerInput(position, flipped, movable, onSquareTap != null, cell) {
                     detectTapGestures { off ->
                         val col = (off.x / cell).toInt().coerceIn(0, 7)
                         val row = (off.y / cell).toInt().coerceIn(0, 7)
@@ -139,7 +140,7 @@ fun ChessBoard(
                         }
                     }
                 }
-                .pointerInput(position, flipped, movable, onSquareTap != null) {
+                .pointerInput(position, flipped, movable, onSquareTap != null, cell) {
                     if (onSquareTap != null) return@pointerInput
                     detectDragGestures(
                         onDragStart = { off ->
@@ -295,5 +296,26 @@ fun EvalBar(whitePercent: Double, label: String, flipped: Boolean, modifier: Mod
             color = if (whiteBetter) Color(0xFF1A1C1F) else Color(0xFFEDEFF2),
             fontSize = 8.sp, fontWeight = FontWeight.Bold, maxLines = 1,
         )
+    }
+}
+
+/** Board with an optional evaluation bar on the left, sized without intrinsic measurements. */
+@Composable
+fun BoardWithEval(
+    showEval: Boolean,
+    whitePercent: Double,
+    label: String,
+    flipped: Boolean,
+    modifier: Modifier = Modifier,
+    board: @Composable (Modifier) -> Unit,
+) {
+    var w by remember { mutableFloatStateOf(0f) }
+    val density = LocalDensity.current
+    Row(modifier.fillMaxWidth().onSizeChanged { w = it.width.toFloat() }) {
+        val barW = if (showEval) with(density) { 28.dp.toPx() } else 0f
+        val boardPx = (w - barW).coerceAtLeast(1f)
+        val boardDp = with(density) { boardPx.toDp() }
+        if (showEval) EvalBar(whitePercent, label, flipped, Modifier.height(boardDp).padding(end = 6.dp))
+        board(Modifier.size(boardDp))
     }
 }
