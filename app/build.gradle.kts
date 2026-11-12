@@ -83,9 +83,17 @@ android {
 // Stockfish: official Android builds from github.com/official-stockfish/Stockfish/releases
 // are downloaded once into src/main/jniLibs/<abi>/libstockfish.so (skipped if already there).
 // ---------------------------------------------------------------------------------------------
+// Asset names changed over releases (sf_17: stockfish-android-armv8.tar, sf_19: stockfish-android-arm64-universal.tar.gz).
 val stockfishTargets = mapOf(
-    "arm64-v8a" to listOf("stockfish-android-armv8.tar"),
-    "armeabi-v7a" to listOf("stockfish-android-armv7-neon.tar", "stockfish-android-armv7.tar"),
+    "arm64-v8a" to listOf(
+        Regex("stockfish-android-arm64-universal\\.tar(\\.gz)?"),
+        Regex("stockfish-android-armv8\\.tar(\\.gz)?"),
+        Regex("stockfish-android-(arm64|armv8)[\\w-]*\\.tar(\\.gz)?"),
+    ),
+    "armeabi-v7a" to listOf(
+        Regex("stockfish-android-armv7-neon\\.tar(\\.gz)?"),
+        Regex("stockfish-android-armv7[\\w-]*\\.tar(\\.gz)?"),
+    ),
 )
 
 val downloadStockfish by tasks.registering {
@@ -112,7 +120,7 @@ val downloadStockfish by tasks.registering {
         val urls = Regex("\"browser_download_url\"\\s*:\\s*\"([^\"]+)\"").findAll(json).map { it.groupValues[1] }.toList()
         val tmp = layout.buildDirectory.dir("stockfish").get().asFile.apply { mkdirs() }
         for ((abi, names) in missing) {
-            val url = names.firstNotNullOfOrNull { n -> urls.firstOrNull { it.endsWith("/$n") } }
+            val url = names.firstNotNullOfOrNull { re -> urls.firstOrNull { re.matches(it.substringAfterLast('/')) } }
                 ?: throw GradleException("Stockfish asset for $abi not found in release ($names). Assets: ${urls.joinToString()}")
             val tar = File(tmp, url.substringAfterLast('/'))
             logger.lifecycle("Downloading $url")
@@ -122,8 +130,9 @@ val downloadStockfish by tasks.registering {
             while (conn.responseCode in 300..399 && hops++ < 5) conn = open(conn.getHeaderField("Location"))
             conn.inputStream.use { inp -> tar.outputStream().use { inp.copyTo(it) } }
             val extractDir = File(tmp, abi).apply { deleteRecursively(); mkdirs() }
-            project.copy { from(project.tarTree(tar)); into(extractDir) }
-            val bin = extractDir.walkTopDown().filter { it.isFile && it.name.startsWith("stockfish-android") && !it.name.contains('.') }
+            project.copy { from(project.tarTree(if (tar.name.endsWith(".gz")) project.resources.gzip(tar) else tar)); into(extractDir) }
+            extractDir.walkTopDown().filter { it.isFile }.forEach { logger.lifecycle("  in archive: ${it.relativeTo(extractDir)} (${it.length()} bytes)") }
+            val bin = extractDir.walkTopDown().filter { it.isFile && it.name.startsWith("stockfish") && !it.name.contains('.') && it.length() > 1_000_000 }
                 .maxByOrNull { it.length() } ?: throw GradleException("Stockfish binary not found inside ${tar.name}")
             val dest = jniDir.file("$abi/libstockfish.so").asFile
             dest.parentFile.mkdirs()
