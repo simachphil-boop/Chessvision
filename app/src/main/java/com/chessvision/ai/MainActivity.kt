@@ -61,6 +61,13 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        val g = (application as ChessVisionApp).graph
+        handleShare(intent, g)
+        if (pendingRoute != null) { setIntent(intent); recreate() }
+    }
+
     private fun handleShare(intent: Intent?, g: AppGraph) {
         if (intent?.action != Intent.ACTION_SEND) return
         val type = intent.type ?: return

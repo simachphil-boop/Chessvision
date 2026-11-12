@@ -41,11 +41,12 @@ jobs:
       - name: Build release APK (compile check)
         run: set -o pipefail; ./gradlew --no-daemon assembleRelease 2>&1 | tee -a "$RUNNER_TEMP/build.log"
 
-      - name: Generate verified puzzles (only if missing)
+      - name: Generate verified puzzles (top up bank to 150+)
         run: |
-          if [ ! -s app/src/main/assets/puzzles.json ]; then
+          N=$( [ -s app/src/main/assets/puzzles.json ] && grep -c '"id"' app/src/main/assets/puzzles.json || echo 0 )
+          if [ "$N" -lt 150 ]; then
             set -o pipefail
-            ./gradlew --no-daemon :core:generatePuzzles -PstockfishPath="$STOCKFISH" -PpuzzleCount=160 -PpuzzleMinutes=18 2>&1 | tail -n 60 | tee -a "$RUNNER_TEMP/build.log"
+            ./gradlew --no-daemon :core:generatePuzzles -PstockfishPath="$STOCKFISH" -PpuzzleCount=200 -PpuzzleMinutes=14 2>&1 | tail -n 60 | tee -a "$RUNNER_TEMP/build.log"
             echo "NEW_PUZZLES=1" >> "$GITHUB_ENV"
           fi
           grep -c '"id"' app/src/main/assets/puzzles.json

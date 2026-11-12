@@ -43,8 +43,8 @@ val MODES = listOf(
 @Composable
 fun HomeScreen(g: AppGraph, onOpen: (String) -> Unit) {
     val status by g.engine.status.collectAsStateWithLifecycle()
-    val games by g.db.games().all().collectAsStateWithLifecycle(emptyList())
-    val solved by g.db.puzzleStats().solvedCount().collectAsStateWithLifecycle(0)
+    val games by remember { g.db.games().all() }.collectAsStateWithLifecycle(emptyList())
+    val solved by remember { g.db.puzzleStats().solvedCount() }.collectAsStateWithLifecycle(0)
     val settings by g.settings.flow.collectAsStateWithLifecycle()
     val scope = rememberCoroutineScope()
     LaunchedEffect(Unit) { scope.launch { runCatching { g.engine.get() } } }

@@ -49,7 +49,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun ReviewListScreen(g: AppGraph, onBack: () -> Unit, onOpen: (Long) -> Unit) {
-    val games by g.db.games().all().collectAsStateWithLifecycle(emptyList())
+    val games by remember { g.db.games().all() }.collectAsStateWithLifecycle(emptyList())
     val scope = rememberCoroutineScope()
     val ctx = LocalContext.current
     var showImport by remember { mutableStateOf(false) }

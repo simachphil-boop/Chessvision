@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 fun SettingsScreen(g: AppGraph, onBack: () -> Unit) {
     val s by g.settings.flow.collectAsStateWithLifecycle()
     val status by g.engine.status.collectAsStateWithLifecycle()
-    val learned by g.db.samples().count().collectAsStateWithLifecycle(0)
+    val learned by remember { g.db.samples().count() }.collectAsStateWithLifecycle(0)
     val scope = rememberCoroutineScope()
     val cores = Runtime.getRuntime().availableProcessors()
 
