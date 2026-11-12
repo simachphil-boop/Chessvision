@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,6 +38,9 @@ jobs:
       - name: Core tests (chess rules, recognition, real Stockfish integration)
         run: set -o pipefail; ./gradlew --no-daemon :core:selfTest -PstockfishPath="$STOCKFISH" 2>&1 | tee -a "$RUNNER_TEMP/build.log"
 
+      - name: Build release APK (compile check)
+        run: set -o pipefail; ./gradlew --no-daemon assembleRelease 2>&1 | tee -a "$RUNNER_TEMP/build.log"
+
       - name: Generate verified puzzles (only if missing)
         run: |
           if [ ! -s app/src/main/assets/puzzles.json ]; then
@@ -52,8 +59,9 @@ jobs:
           git commit -m "Add Stockfish-verified puzzles [skip ci]" || exit 0
           git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" || echo "puzzle commit skipped"
 
-      - name: Build release APK
-        run: set -o pipefail; ./gradlew --no-daemon assembleRelease 2>&1 | tee -a "$RUNNER_TEMP/build.log"
+      - name: Rebuild APK with puzzles
+        if: env.NEW_PUZZLES == '1'
+        run: set -o pipefail; ./gradlew --no-daemon assembleRelease 2>&1 | tail -n 20 | tee -a "$RUNNER_TEMP/build.log"
 
       - name: Collect APKs
         run: |
