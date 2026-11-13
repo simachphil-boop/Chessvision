@@ -83,18 +83,20 @@ fun OverlayWindow(
             .border(1.dp, CV.Stroke, RoundedCornerShape(16.dp)).padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        // header = drag handle
-        Row(Modifier.fillMaxWidth().rawDrag(onDrag), verticalAlignment = Alignment.CenterVertically) {
-            Icon(Icons.Filled.DragIndicator, null, tint = CV.TextFaint, modifier = Modifier.size(18.dp))
-            Spacer(Modifier.width(4.dp))
-            if (compact) {
-                Text(best?.score?.display() ?: "…", color = CV.Accent, fontWeight = FontWeight.Bold, fontFamily = Mono, fontSize = 14.sp)
-                Spacer(Modifier.width(8.dp))
-                Text(bestSan ?: "", color = CV.Text, fontSize = 14.sp, modifier = Modifier.weight(1f), maxLines = 1)
-            } else Text(session.title, color = CV.Text, fontSize = 13.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f),
-                maxLines = 1, overflow = TextOverflow.Ellipsis)
+        // header: only the left part is the drag handle, so the buttons keep receiving taps
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Row(Modifier.weight(1f).height(32.dp).rawDrag(onDrag), verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Filled.DragIndicator, null, tint = CV.TextFaint, modifier = Modifier.size(18.dp))
+                Spacer(Modifier.width(4.dp))
+                if (compact) {
+                    Text(best?.score?.display() ?: "…", color = CV.Accent, fontWeight = FontWeight.Bold, fontFamily = Mono, fontSize = 14.sp)
+                    Spacer(Modifier.width(8.dp))
+                    Text(bestSan ?: "", color = CV.Text, fontSize = 14.sp, modifier = Modifier.weight(1f), maxLines = 1)
+                } else Text(session.title, color = CV.Text, fontSize = 13.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f),
+                    maxLines = 1, overflow = TextOverflow.Ellipsis)
+            }
             SmallIcon(if (compact) Icons.Filled.OpenInFull else Icons.Filled.CloseFullscreen, if (compact) "Развернуть" else "Свернуть", onClick = onToggleCompact)
-            SmallIcon(Icons.Filled.Close, "Закрыть", onClick = onClose)
+            SmallIcon(Icons.Filled.Close, "Закрыть", tint = CV.Text, onClick = onClose)
         }
         AnimatedVisibility(!compact) {
             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
