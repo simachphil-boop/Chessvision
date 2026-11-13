@@ -1,0 +1,300 @@
+  in archive: stockfish/src/tt.cpp (10528 bytes)
+  in archive: stockfish/src/movepick.cpp (11713 bytes)
+  in archive: stockfish/src/benchmark.h (1345 bytes)
+  in archive: stockfish/src/shm_unix.h (20190 bytes)
+  in archive: stockfish/src/main.cpp (1602 bytes)
+  in archive: stockfish/src/engine.cpp (12223 bytes)
+  in archive: stockfish/src/thread_native.h (5080 bytes)
+  in archive: stockfish/src/thread.cpp (16274 bytes)
+  in archive: stockfish/src/memory.h (13202 bytes)
+  in archive: stockfish/src/evaluate.cpp (3844 bytes)
+  in archive: stockfish/src/movegen.cpp (9759 bytes)
+  in archive: stockfish/src/Makefile (46710 bytes)
+  in archive: stockfish/src/syzygy/tbprobe.cpp (70928 bytes)
+  in archive: stockfish/src/syzygy/tbprobe.h (2640 bytes)
+  in archive: stockfish/src/search.h (14636 bytes)
+  in archive: stockfish/src/tune.h (6712 bytes)
+  in archive: stockfish/src/position.h (14842 bytes)
+  in archive: stockfish/src/numa.h (63050 bytes)
+  in archive: stockfish/src/ucioption.cpp (6326 bytes)
+  in archive: stockfish/src/benchmark.cpp (27174 bytes)
+  in archive: stockfish/stockfish-android-arm64-universal (100695968 bytes)
+  in archive: stockfish/README.md (7772 bytes)
+  in archive: stockfish/wiki/UCI-Protocol-and-Stockfish-Commands.md (41312 bytes)
+  in archive: stockfish/wiki/Terminology.md (5260 bytes)
+  in archive: stockfish/wiki/Advanced-topics.md (12185 bytes)
+  in archive: stockfish/wiki/Stockfish-FAQ.md (16634 bytes)
+  in archive: stockfish/wiki/_Footer.md (84 bytes)
+  in archive: stockfish/wiki/Developers.md (9700 bytes)
+  in archive: stockfish/wiki/Compiling-from-source.md (31478 bytes)
+  in archive: stockfish/wiki/Home.md (2330 bytes)
+  in archive: stockfish/wiki/Useful-data.md (36838 bytes)
+  in archive: stockfish/wiki/Regression-Tests.md (313551 bytes)
+  in archive: stockfish/wiki/Governance-and-responsibilities.md (4188 bytes)
+  in archive: stockfish/wiki/Download-and-usage.md (11286 bytes)
+  in archive: stockfish/Copying.txt (35149 bytes)
+  in archive: stockfish/scripts/check_universal_arm.sh (1870 bytes)
+  in archive: stockfish/scripts/check_universal_riscv.sh (2078 bytes)
+  in archive: stockfish/scripts/get_native_properties.sh (8958 bytes)
+  in archive: stockfish/scripts/check_universal_macos.sh (1767 bytes)
+  in archive: stockfish/scripts/check_universal.sh (2357 bytes)
+  in archive: stockfish/scripts/net.sh (2419 bytes)
+  in archive: stockfish/CONTRIBUTING.md (3766 bytes)
+Stockfish for arm64-v8a: stockfish-android-arm64-universal (96 MB) -> /home/runner/work/Chessvision/Chessvision/app/src/main/jniLibs/arm64-v8a/libstockfish.so
+Downloading https://github.com/official-stockfish/Stockfish/releases/download/sf_19/stockfish-android-armv7-neon.tar.gz
+  in archive: stockfish/Top CPU Contributors.txt (25405 bytes)
+  in archive: stockfish/AUTHORS (6922 bytes)
+  in archive: stockfish/CITATION.cff (704 bytes)
+  in archive: stockfish/stockfish-android-armv7-neon (99697096 bytes)
+  in archive: stockfish/src/perft.h (1994 bytes)
+  in archive: stockfish/src/search.cpp (94212 bytes)
+  in archive: stockfish/src/thread.h (6185 bytes)
+  in archive: stockfish/src/bitboard.h (8626 bytes)
+  in archive: stockfish/src/timeman.h (2106 bytes)
+  in archive: stockfish/src/bitboard.cpp (1409 bytes)
+  in archive: stockfish/src/movegen.h (2130 bytes)
+  in archive: stockfish/src/memory.cpp (7669 bytes)
+  in archive: stockfish/src/shm.h (20148 bytes)
+  in archive: stockfish/src/universal/nnue_embed.cpp (2838 bytes)
+  in archive: stockfish/src/universal/entry_arm64.cpp (2202 bytes)
+  in archive: stockfish/src/universal/entry_riscv64.cpp (3158 bytes)
+  in archive: stockfish/src/universal/rewrite_asm_sections.awk (2731 bytes)
+  in archive: stockfish/src/universal/entry_x86.cpp (6925 bytes)
+  in archive: stockfish/src/universal/patch_x86_slice.sh (2754 bytes)
+  in archive: stockfish/src/movepick.h (2794 bytes)
+  in archive: stockfish/src/position.cpp (58345 bytes)
+  in archive: stockfish/src/nnue/simd.h (18476 bytes)
+  in archive: stockfish/src/nnue/nnue_misc.h (2011 bytes)
+  in archive: stockfish/src/nnue/nnue_architecture.h (7309 bytes)
+  in archive: stockfish/src/nnue/network.h (3836 bytes)
+  in archive: stockfish/src/nnue/nnue_misc.cpp (3115 bytes)
+  in archive: stockfish/src/nnue/features/half_ka_v2_hm.h (5604 bytes)
+  in archive: stockfish/src/nnue/features/pp_3wide.h (3153 bytes)
+  in archive: stockfish/src/nnue/features/full_threats.cpp (12348 bytes)
+  in archive: stockfish/src/nnue/features/half_ka_v2_hm.cpp (4799 bytes)
+  in archive: stockfish/src/nnue/features/full_threats.h (4424 bytes)
+  in archive: stockfish/src/nnue/features/pp_3wide.cpp (10602 bytes)
+  in archive: stockfish/src/nnue/network.cpp (12385 bytes)
+  in archive: stockfish/src/nnue/nnue_feature_transformer.h (17977 bytes)
+  in archive: stockfish/src/nnue/nnue_accumulator.h (5476 bytes)
+  in archive: stockfish/src/nnue/nnue_accumulator.cpp (38316 bytes)
+  in archive: stockfish/src/nnue/nnz_helper.h (5760 bytes)
+  in archive: stockfish/src/nnue/layers/clipped_relu.h (7033 bytes)
+  in archive: stockfish/src/nnue/layers/affine_transform.h (16937 bytes)
+  in archive: stockfish/src/nnue/layers/sqr_clipped_relu.h (11029 bytes)
+  in archive: stockfish/src/nnue/layers/affine_transform_sparse_input.h (18056 bytes)
+  in archive: stockfish/src/nnue/nnue_common.h (10557 bytes)
+  in archive: stockfish/src/history.h (9247 bytes)
+  in archive: stockfish/src/uci.cpp (22760 bytes)
+  in archive: stockfish/src/score.h (1605 bytes)
+  in archive: stockfish/src/engine.h (4894 bytes)
+  in archive: stockfish/src/uci.h (2571 bytes)
+  in archive: stockfish/src/misc.h (18048 bytes)
+  in archive: stockfish/src/incbin/incbin.h (16036 bytes)
+  in archive: stockfish/src/incbin/UNLICENCE (1292 bytes)
+  in archive: stockfish/src/timeman.cpp (5507 bytes)
+  in archive: stockfish/src/tt.h (3824 bytes)
+  in archive: stockfish/src/attacks.cpp (6182 bytes)
+  in archive: stockfish/src/types.h (16233 bytes)
+  in archive: stockfish/src/ucioption.h (3179 bytes)
+  in archive: stockfish/src/misc.cpp (17371 bytes)
+  in archive: stockfish/src/attacks.h (11668 bytes)
+  in archive: stockfish/src/score.cpp (1414 bytes)
+  in archive: stockfish/src/evaluate.h (1767 bytes)
+  in archive: stockfish/src/tune.cpp (3512 bytes)
+  in archive: stockfish/src/tt.cpp (10528 bytes)
+  in archive: stockfish/src/movepick.cpp (11713 bytes)
+  in archive: stockfish/src/benchmark.h (1345 bytes)
+  in archive: stockfish/src/shm_unix.h (20190 bytes)
+  in archive: stockfish/src/main.cpp (1602 bytes)
+  in archive: stockfish/src/engine.cpp (12223 bytes)
+  in archive: stockfish/src/thread_native.h (5080 bytes)
+  in archive: stockfish/src/thread.cpp (16274 bytes)
+  in archive: stockfish/src/memory.h (13202 bytes)
+  in archive: stockfish/src/evaluate.cpp (3844 bytes)
+  in archive: stockfish/src/movegen.cpp (9759 bytes)
+  in archive: stockfish/src/Makefile (46710 bytes)
+  in archive: stockfish/src/syzygy/tbprobe.cpp (70928 bytes)
+  in archive: stockfish/src/syzygy/tbprobe.h (2640 bytes)
+  in archive: stockfish/src/search.h (14636 bytes)
+  in archive: stockfish/src/tune.h (6712 bytes)
+  in archive: stockfish/src/position.h (14842 bytes)
+  in archive: stockfish/src/numa.h (63050 bytes)
+  in archive: stockfish/src/ucioption.cpp (6326 bytes)
+  in archive: stockfish/src/benchmark.cpp (27174 bytes)
+  in archive: stockfish/README.md (7772 bytes)
+  in archive: stockfish/wiki/UCI-Protocol-and-Stockfish-Commands.md (41312 bytes)
+  in archive: stockfish/wiki/Terminology.md (5260 bytes)
+  in archive: stockfish/wiki/Advanced-topics.md (12185 bytes)
+  in archive: stockfish/wiki/Stockfish-FAQ.md (16634 bytes)
+  in archive: stockfish/wiki/_Footer.md (84 bytes)
+  in archive: stockfish/wiki/Developers.md (9700 bytes)
+  in archive: stockfish/wiki/Compiling-from-source.md (31478 bytes)
+  in archive: stockfish/wiki/Home.md (2330 bytes)
+  in archive: stockfish/wiki/Useful-data.md (36838 bytes)
+  in archive: stockfish/wiki/Regression-Tests.md (313551 bytes)
+  in archive: stockfish/wiki/Governance-and-responsibilities.md (4188 bytes)
+  in archive: stockfish/wiki/Download-and-usage.md (11286 bytes)
+  in archive: stockfish/Copying.txt (35149 bytes)
+  in archive: stockfish/scripts/check_universal_arm.sh (1870 bytes)
+  in archive: stockfish/scripts/check_universal_riscv.sh (2078 bytes)
+  in archive: stockfish/scripts/get_native_properties.sh (8958 bytes)
+  in archive: stockfish/scripts/check_universal_macos.sh (1767 bytes)
+  in archive: stockfish/scripts/check_universal.sh (2357 bytes)
+  in archive: stockfish/scripts/net.sh (2419 bytes)
+  in archive: stockfish/CONTRIBUTING.md (3766 bytes)
+Stockfish for armeabi-v7a: stockfish-android-armv7-neon (95 MB) -> /home/runner/work/Chessvision/Chessvision/app/src/main/jniLibs/armeabi-v7a/libstockfish.so
+
+> Task :app:preBuild
+> Task :app:preReleaseBuild
+> Task :app:mergeReleaseJniLibFolders
+> Task :app:buildKotlinToolingMetadata
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:generateReleaseBuildConfig
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:mergeReleaseNativeLibs
+> Task :app:checkReleaseAarMetadata
+> Task :app:generateReleaseResValues FROM-CACHE
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources FROM-CACHE
+> Task :app:mergeReleaseResources FROM-CACHE
+> Task :app:packageReleaseResources FROM-CACHE
+
+> Task :app:stripReleaseDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so, libstockfish.so.
+
+> Task :app:parseReleaseLocalResources FROM-CACHE
+> Task :app:extractReleaseNativeSymbolTables FROM-CACHE
+> Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease FROM-CACHE
+> Task :app:processReleaseMainManifest
+> Task :app:processReleaseManifest
+> Task :app:javaPreCompileRelease FROM-CACHE
+> Task :app:processReleaseManifestForPackage
+> Task :app:mergeReleaseArtProfile
+> Task :app:extractProguardFiles
+> Task :app:mergeReleaseStartupProfile
+> Task :app:mergeReleaseShaders
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets
+> Task :app:compressReleaseAssets FROM-CACHE
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:collectReleaseDependencies
+> Task :app:sdkReleaseDependencyData
+> Task :app:validateSigningRelease
+> Task :app:writeReleaseAppMetadata
+> Task :app:writeReleaseSigningConfigVersions
+> Task :app:processReleaseResources
+> Task :app:convertLinkedResourcesToProtoRelease
+> Task :app:kspReleaseKotlin
+
+> Task :app:compileReleaseKotlin
+w: file:///home/runner/work/Chessvision/Chessvision/app/src/main/java/com/chessvision/ai/overlay/OverlayWindow.kt:133:44 'val Icons.Filled.OpenInNew: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.OpenInNew.
+w: file:///home/runner/work/Chessvision/Chessvision/app/src/main/java/com/chessvision/ai/ui/board/Components.kt:85:79 'val Icons.Filled.LastPage: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.LastPage.
+w: file:///home/runner/work/Chessvision/Chessvision/app/src/main/java/com/chessvision/ai/ui/screens/AnalysisScreen.kt:205:120 'val Icons.Filled.PlaylistAdd: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.PlaylistAdd.
+w: file:///home/runner/work/Chessvision/Chessvision/app/src/main/java/com/chessvision/ai/ui/screens/HomeScreen.kt:86:75 'val Icons.Filled.OpenInNew: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.OpenInNew.
+w: file:///home/runner/work/Chessvision/Chessvision/app/src/main/java/com/chessvision/ai/ui/screens/PracticeScreen.kt:216:45 'val Icons.Filled.Undo: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.Undo.
+w: file:///home/runner/work/Chessvision/Chessvision/app/src/main/java/com/chessvision/ai/ui/screens/PuzzleScreen.kt:211:97 'val Icons.Filled.ArrowForward: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.ArrowForward.
+w: file:///home/runner/work/Chessvision/Chessvision/app/src/main/java/com/chessvision/ai/ui/screens/TrainingScreen.kt:177:79 'val Icons.Filled.ArrowForward: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.ArrowForward.
+
+> Task :app:compileReleaseJavaWithJavac
+> Task :app:mergeReleaseGeneratedProguardFiles
+> Task :app:processReleaseJavaRes
+> Task :app:expandReleaseArtProfileWildcards
+> Task :app:mergeReleaseJavaResource
+> Task :app:minifyReleaseWithR8
+> Task :app:compileReleaseArtProfile
+> Task :app:shrinkReleaseRes
+> Task :app:convertShrunkResourcesToBinaryRelease
+> Task :app:optimizeReleaseResources
+> Task :app:packageRelease
+> Task :app:createReleaseApkListingFileRedirect
+> Task :app:assembleRelease
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_3-1794548084518.json
+
+BUILD SUCCESSFUL in 2m 22s
+51 actionable tasks: 40 executed, 9 from cache, 2 up-to-date
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:compileKotlin UP-TO-DATE
+> Task :core:compileJava NO-SOURCE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :core:compileTestKotlin UP-TO-DATE
+> Task :core:compileTestJava NO-SOURCE
+> Task :core:processTestResources NO-SOURCE
+> Task :core:testClasses UP-TO-DATE
+> Task :core:generatePuzzles
+puzzle 98: advantage r=1824 1r2rk2/4Rp2/pp1p2pn/2pP3p/PnP2P1P/N1P3PB/7K/4R3 w - - 3 27 [e7e8, b8e8, e1e8, f8e8, c3b4]
+puzzle 99: crushing r=1352 r2q1rk1/4b1p1/bpn1pn1p/p1p2p2/2Pp1P2/PP2PNP1/NB1PQ1BP/1R2K2R b K c3 0 15 [d4c3]
+puzzle 100: crushing r=1626 r1b1kq2/pp3pR1/2p1n2B/3pP2p/4P3/PN5N/1PP2P1P/R3KB2 w Qq - 1 15 [g7g6, f8h8, g6f6]
+puzzle 101: advantage r=1310 r2qk3/1p1bppb1/p1n5/3n4/P1NP1Pp1/3P4/1P2B1P1/R1BQ1K1N b q - 0 16 [f7f5]
+puzzle 102: crushing r=1532 r1bq1rk1/pP3pp1/3b4/3pn2p/8/2P1BPP1/PP1QN2P/R3KB1R b KQ - 0 15 [e5f3, e1d1, c8b7]
+puzzle 103: advantage r=1352 n7/P1r5/4R1p1/6P1/1N6/1Kp5/3k4/8 w - - 1 75 [e6d6]
+puzzle 104: crushing r=1267 r3r3/2pb1kpp/p4n2/Pp1p1p2/1q1n1P2/1PN1B2P/3RBPP1/Q4RK1 b - - 1 18 [d4e2]
+puzzle 105: crushing r=1644 2r5/6k1/5R2/8/1P3Pp1/2B3P1/4r3/2K5 w - - 3 52 [f6c6, g7f8, c6c8]
+puzzle 106: advantage r=1292 r3k2r/2pq1pb1/pp3pp1/n6p/1PbN1P1P/P1PPP3/5QP1/RNR3K1 b kq - 0 17 [a5b3]
+puzzle 107: crushing r=1326 3r1r2/2p3bk/p2q2p1/P4p1p/PP1P1P1P/2N3P1/Q7/R2R2K1 b - - 0 28 [g7d4]
+puzzle 108: crushing r=1247 r1b1kr2/2p5/pP1p1n1p/4Pn2/7p/2PB3P/2PB2qK/R2Q1R2 w q - 0 24 [h2g2]
+puzzle 109: advantage r=1624 8/5k2/7p/3r3P/3NR1p1/8/8/6K1 w - - 3 56 [e4f4, f7e7, d4f5]
+puzzle 110: advantage r=1316 r2qk2r/pbpp2pp/np2p3/P3Np2/1b1P4/4P2P/1PP2PP1/R1BQKB1R w KQkq - 1 11 [c2c3]
+puzzle 111: crushing r=1308 8/5k2/6p1/1P3p2/p1K2b2/2P4r/R4N2/8 b - - 1 64 [h3h2]
+puzzle 112: crushing r=1568 r7/pp3kP1/2p1b3/3qP1Bn/3pN3/P2P1N2/1P3P2/n2QK3 w - - 3 25 [f3h4, d5e4, d3e4]
+puzzle 113: advantage r=1833 8/4r1b1/6pk/5p1p/2Bn1P1P/R5P1/3P1K2/4N3 b - - 38 62 [e7e1, f2e1, d4c2, e1e2, c2a3]
+puzzle 114: advantage r=1840 rn2kb1r/p4pp1/2p4p/3b4/B1pN4/q1P1P2N/P4PPP/R2Q1KR1 w kq - 1 15 [h3f4, d5e4, f2f3, f8c5, f3e4]
+puzzle 115: advantage r=1268 rnbq1r1k/3pb1pp/2p2p1n/p2B4/4P3/PPN4P/3BNPP1/R2QK2R b KQ - 2 13 [c6d5]
+puzzle 116: advantage r=1273 3B4/3k2R1/8/1p1p2KP/5p2/r7/6n1/8 b - - 4 57 [d7d8]
+puzzle 117: advantage r=1623 r5k1/pb1p2p1/1pn1p1q1/5r2/3P4/2RB4/PP1N4/3KQ2R b - - 1 26 [g6g4, d1c1, c6b4]
+puzzle 118: advantage r=1363 r3k2r/p2n1Rbp/b1p1q3/p7/4pP2/2NNPQP1/PPP5/R1B1K3 w Qkq - 0 21 [c3e4]
+puzzle 119: crushing r=1289 rqb2kr1/1p2ppb1/3p2n1/p2P3Q/BP5R/P3B1P1/5P2/2R1K1N1 w - - 1 26 [h4c4]
+puzzle 120: advantage r=1799 r4rk1/ppp1qpp1/7p/nP1pPb2/P3N3/2PBPN1P/2Q2PP1/1Rb1K2R b K - 0 16 [d5e4, d3e4, f5e4, c2e4, c1a3]
+puzzle 121: crushing r=1254 4rrk1/pp3pp1/4q2p/1Pp1P3/PQnN4/2P1P2P/5RP1/1R4K1 w - - 0 24 [d4e6]
+total puzzles: 121 in 840s
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_4-1794548228125.json
+
+BUILD SUCCESSFUL in 14m 10s
+4 actionable tasks: 1 executed, 3 up-to-date
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets
+> Task :app:compressReleaseAssets
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:convertLinkedResourcesToProtoRelease UP-TO-DATE
+> Task :app:shrinkReleaseRes UP-TO-DATE
+> Task :app:convertShrunkResourcesToBinaryRelease UP-TO-DATE
+> Task :app:optimizeReleaseResources UP-TO-DATE
+> Task :app:collectReleaseDependencies UP-TO-DATE
+> Task :app:sdkReleaseDependencyData UP-TO-DATE
+> Task :app:validateSigningRelease UP-TO-DATE
+> Task :app:writeReleaseAppMetadata UP-TO-DATE
+> Task :app:writeReleaseSigningConfigVersions UP-TO-DATE
+> Task :app:packageRelease
+> Task :app:createReleaseApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleRelease
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_6-1794549080125.json
+
+BUILD SUCCESSFUL in 18s
+51 actionable tasks: 4 executed, 47 up-to-date
+w: file:///home/runner/work/Chessvision/Chessvision/app/src/main/java/com/chessvision/ai/ui/board/Components.kt:85:79 'val Icons.Filled.LastPage: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.LastPage.
+w: file:///home/runner/work/Chessvision/Chessvision/app/src/main/java/com/chessvision/ai/ui/screens/AnalysisScreen.kt:205:120 'val Icons.Filled.PlaylistAdd: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.PlaylistAdd.
+w: file:///home/runner/work/Chessvision/Chessvision/app/src/main/java/com/chessvision/ai/ui/screens/HomeScreen.kt:86:75 'val Icons.Filled.OpenInNew: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.OpenInNew.
+w: file:///home/runner/work/Chessvision/Chessvision/app/src/main/java/com/chessvision/ai/ui/screens/PracticeScreen.kt:216:45 'val Icons.Filled.Undo: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.Undo.
+w: file:///home/runner/work/Chessvision/Chessvision/app/src/main/java/com/chessvision/ai/ui/screens/PuzzleScreen.kt:211:97 'val Icons.Filled.ArrowForward: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.ArrowForward.
+w: file:///home/runner/work/Chessvision/Chessvision/app/src/main/java/com/chessvision/ai/ui/screens/TrainingScreen.kt:177:79 'val Icons.Filled.ArrowForward: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.ArrowForward.
+
+> Task :app:compileDebugJavaWithJavac
+> Task :app:dexBuilderDebug
+> Task :app:mergeDebugGlobalSynthetics FROM-CACHE
+> Task :app:processDebugJavaRes
+> Task :app:mergeProjectDexDebug
+> Task :app:mergeDebugJavaResource
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_7-1794549099343.json
+
+BUILD SUCCESSFUL in 55s
+41 actionable tasks: 27 executed, 11 from cache, 3 up-to-date
