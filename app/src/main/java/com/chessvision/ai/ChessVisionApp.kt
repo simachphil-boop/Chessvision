@@ -20,6 +20,8 @@ class AppGraph(val app: Application) {
     val engine = EngineManager(app, settings)
     val puzzles = PuzzleRepository(app, db)
     val recognition = RecognitionService(app, db)
+    /** Shared state of the floating analysis window. */
+    val overlay = com.chessvision.ai.overlay.OverlayRepository()
 
     private val pieceSets = HashMap<String, PieceSetAssets>()
 

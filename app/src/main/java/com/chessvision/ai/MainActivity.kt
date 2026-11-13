@@ -22,7 +22,14 @@ import com.chessvision.ai.ui.theme.ChessVisionTheme
 import com.chessvision.core.chess.Pgn
 
 class MainActivity : ComponentActivity() {
-    private var pendingRoute: String? = null
+    private var pendingRoute: String?
+        get() = routeState.value
+        set(v) { routeState.value = v }
+    private val routeState = androidx.compose.runtime.mutableStateOf<String?>(null)
+
+    companion object {
+        const val EXTRA_ROUTE = "route"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +39,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ChessVisionTheme {
                 val nav = rememberNavController()
-                LaunchedEffect(Unit) { pendingRoute?.let { pendingRoute = null; nav.navigate(it) } }
+                LaunchedEffect(routeState.value) { routeState.value?.let { r -> routeState.value = null; nav.navigate(r) { if (r == "analysis") popUpTo("analysis") { inclusive = true }; launchSingleTop = true } } }
                 NavHost(
                     nav, startDestination = "home",
                     enterTransition = { slideInHorizontally { it / 6 } + fadeIn() },
@@ -65,10 +72,19 @@ class MainActivity : ComponentActivity() {
         super.onNewIntent(intent)
         val g = (application as ChessVisionApp).graph
         handleShare(intent, g)
-        if (pendingRoute != null) { setIntent(intent); recreate() }
+        setIntent(intent)
     }
 
     private fun handleShare(intent: Intent?, g: AppGraph) {
+        if (intent?.getStringExtra(EXTRA_ROUTE) == "analysis_from_overlay") {
+            intent.removeExtra(EXTRA_ROUTE)
+            val s = g.overlay.session.value
+            val game = s.game.copy().also { it.truncate(s.ply.coerceIn(0, it.size)) }
+            if (s.flipped) game.headers["Flip"] = "1"
+            g.pendingGame = game
+            pendingRoute = "analysis"
+            return
+        }
         if (intent?.action != Intent.ACTION_SEND) return
         val type = intent.type ?: return
         if (type.startsWith("image/")) {

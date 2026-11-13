@@ -226,8 +226,15 @@ fun ReviewScreen(g: AppGraph, id: Long, onBack: () -> Unit, onAnalyze: () -> Uni
     val s by g.settings.flow.collectAsStateWithLifecycle()
     val pieceSet = remember(s.pieceSet) { g.pieceSet(s.pieceSet) }
     val theme = CV.BoardThemes.getOrElse(s.boardTheme) { CV.BoardThemes[0] }
+    val overlay = com.chessvision.ai.overlay.rememberOverlayLauncher()
 
     ScreenScaffold("Разбор партии", onBack, actions = {
+        IconButton(onClick = {
+            val gm = ui.game ?: return@IconButton
+            val e = ui.entity
+            g.overlay.open(gm, ui.ply, ui.flipped, "Разбор: ${e?.white ?: ""} — ${e?.black ?: ""}")
+            overlay.launch()
+        }) { Icon(Icons.Filled.PictureInPictureAlt, "В плавающее окно", tint = CV.Text) }
         IconButton(onClick = { vm.flip() }) { Icon(Icons.Filled.SwapVert, "Перевернуть", tint = CV.Text) }
         IconButton(onClick = { vm.toAnalysis(); onAnalyze() }) { Icon(Icons.Filled.Analytics, "В анализ", tint = CV.Text) }
     }) {

@@ -151,6 +151,7 @@ fun AnalysisScreen(g: AppGraph, onBack: () -> Unit, onReview: (Long) -> Unit) {
     var menu by remember { mutableStateOf(false) }
     val pieceSet = remember(settings.pieceSet) { g.pieceSet(settings.pieceSet) }
     val theme = CV.BoardThemes.getOrElse(settings.boardTheme) { CV.BoardThemes[0] }
+    val overlay = com.chessvision.ai.overlay.rememberOverlayLauncher()
 
     val showAnalysisForBase = ui.engineOn && an.fen == Fen.toFen(ui.basePosition)
     val arrows = remember(an, ui.version, settings.showArrows) {
@@ -174,6 +175,8 @@ fun AnalysisScreen(g: AppGraph, onBack: () -> Unit, onReview: (Long) -> Unit) {
             DropdownMenuItem({ Text("Копировать FEN") }, { menu = false; copy(ctx, Fen.toFen(ui.shownPosition)) }, leadingIcon = { Icon(Icons.Filled.ContentCopy, null) })
             DropdownMenuItem({ Text("Копировать PGN") }, { menu = false; copy(ctx, ui.game.toPgn()) }, leadingIcon = { Icon(Icons.Filled.Description, null) })
             DropdownMenuItem({ Text("Новая партия") }, { menu = false; vm.setPosition(Position.start()) }, leadingIcon = { Icon(Icons.Filled.RestartAlt, null) })
+            DropdownMenuItem({ Text("В плавающее окно") }, { menu = false; g.overlay.open(ui.game, ui.ply, ui.flipped, "Анализ"); overlay.launch() },
+                leadingIcon = { Icon(Icons.Filled.PictureInPictureAlt, null) })
             DropdownMenuItem({ Text("Сохранить и разобрать") }, { menu = false; vm.save { onReview(it) } }, leadingIcon = { Icon(Icons.Filled.Insights, null) })
         }
     }) {

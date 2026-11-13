@@ -48,6 +48,8 @@ fun HomeScreen(g: AppGraph, onOpen: (String) -> Unit) {
     val settings by g.settings.flow.collectAsStateWithLifecycle()
     val scope = rememberCoroutineScope()
     LaunchedEffect(Unit) { scope.launch { runCatching { g.engine.get() } } }
+    val overlay = com.chessvision.ai.overlay.rememberOverlayLauncher()
+    val overlayRunning by g.overlay.running.collectAsStateWithLifecycle()
 
     Column(Modifier.fillMaxSize().background(CV.Bg).systemBarsPadding().verticalScroll(rememberScrollState()).padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)) {
@@ -67,6 +69,21 @@ fun HomeScreen(g: AppGraph, onOpen: (String) -> Unit) {
         val rows = MODES.chunked(2)
         for (r in rows) Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             for (m in r) ModeCard(m, Modifier.weight(1f)) { onOpen(m.route) }
+        }
+
+        Row(
+            Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(CV.Surface).border(1.dp, CV.Stroke, RoundedCornerShape(14.dp))
+                .clickable { if (overlayRunning) com.chessvision.ai.overlay.FloatingOverlayService.stop(g.app) else overlay.launch() }.padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(Icons.Filled.PictureInPictureAlt, null, tint = CV.Accent)
+            Spacer(Modifier.width(10.dp))
+            Column(Modifier.weight(1f)) {
+                Text("Плавающее окно анализа", color = CV.Text, style = MaterialTheme.typography.titleMedium)
+                Text(if (overlayRunning) "Открыто — нажми, чтобы закрыть" else "Учебная доска со Stockfish поверх других приложений",
+                    color = CV.TextDim, style = MaterialTheme.typography.bodySmall)
+            }
+            Icon(if (overlayRunning) Icons.Filled.Close else Icons.Filled.OpenInNew, null, tint = CV.TextDim)
         }
 
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
